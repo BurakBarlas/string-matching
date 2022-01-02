@@ -4,7 +4,7 @@
 #include "ReadParagraph.cpp"
 
 int main() {
-    readFromQuestion();
-    // readFromParagraph();
+    // readFromQuestion();
+    readFromParagraph();
     return 0;
 }
