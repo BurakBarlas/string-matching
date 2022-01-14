@@ -6,7 +6,7 @@
 
 using namespace std;
 
-string hashedText[1000];
+string hashedText[100];
 
 void readFromParagraph(){
 
@@ -19,10 +19,10 @@ void readFromParagraph(){
 
     bool isInWhile = true;
 
-    ifstream mainText("the_truman_show_script.txt");
-    //ifstream mainText("test.txt");
+    //ifstream mainText("the_truman_show_script.txt");
+    ifstream mainText("test.txt");
 
-    for (int i = 0; i < 1000; i++){
+    for (int i = 0; i < 100; i++){
         hashedText[i] = "NULL";
     }
     
@@ -35,6 +35,7 @@ void readFromParagraph(){
         if(word.size() >= 2 &&(word[0] >= 'a' && word[0] <= 'z') && word.back() == '.'){
             tempIndex = numberOfWord;
 
+//buradaki if gereksiz if'i kontrol et sil
             if (hashedText[tempIndex] == "NULL"){
 
             }
@@ -50,77 +51,93 @@ void readFromParagraph(){
         }
     }
 
-    for (int i = 0; i < 1000; i++){
+    for (int i = 0; i < 100; i++){
         cout << i << ") " << hashedText[i] << endl;
     }
     
-    // for (int i = 0; i < hashIndex-1; i++)
-    // {
-    //     cout << i << " " << hashedText[i] << endl;
-    // }
+
+    sentencesCompare();
 }
 
 void sentencesCompare(){
-    hashedText[0];
-    quest_arr_2D[3][3];
-    num_of_quests[4];
-    int sentenceIndex = 0;
+
     string searchingWord;
     string lookingSentence;
-    int tempIndex = 0;
     bool isCorrectSentence = false;
+    int blankIndex;
+    int sentenceIndex = 0;
+    int tempIndex = 0;
     int correctWordCount = 0;
     int incorrectWordLimit = 4;
+
     
     for (int i = 0; i < 62; i++){
-        for (int j = 0; j < 62; j++){
+        for (int j = 0; j < num_of_quests[i]; j++){
             isCorrectSentence = false;
             searchingWord = quest_arr_2D[i][j];
+            
             lookingSentence = hashedText[sentenceIndex];
+
+            for (int i = 0; i < lookingSentence.size(); i++){
+                cout << lookingSentence[i];
+            }
+            cout << endl;
+            
+            cout << searchingWord << " " << lookingSentence << " " << sentenceIndex << endl;
             //looking sentence icine bakip kelimenin olup olmadigi kontrol ediliyor
-            for (int z = 0; z < lookingSentence.size(); z++){
-                
+            for (int z = 0; z <= lookingSentence.size(); z++){
+                cout << z << " z " << endl;
+                //cout << "for ici " << tempIndex << endl;
                 if (searchingWord[tempIndex] == lookingSentence[z] && tempIndex < searchingWord.size() && lookingSentence[z] != ' '){
                     tempIndex++;
-                }
-                else{
-                    if (tempIndex == (searchingWord.size()-1)){
+                    cout << " harfler ayni " << endl;
+                }else{
+                    //cout << "89else "<< endl;
+                    if (tempIndex == searchingWord.size()){
                         isCorrectSentence = true;
+                        cout << " correct word " << endl;
                         break;
                     }
                     else{
-                        tempIndex = 0;
+                        //cout << tempIndex << " " << searchingWord.size() << endl;
+                        blankIndex = z;
+                        //baktigimiz kelime aradigimiz kelime olmadigi icin o kelimeyi atliyoruz
+                         while (lookingSentence[blankIndex] != ' '){
+                            if(blankIndex == 99){
+                                break;
+                            }
+                            blankIndex++;
+                        }
+                        z = blankIndex + 1;
+                        //cout << "95satir else" << endl;
+                        tempIndex = 0; 
                     }
                     
-                    tempIndex = 0;
                 }
             }
             if(isCorrectSentence){
                 correctWordCount++;
             }
             // BURADA KALDIK OÇ
-            else{
-                incorrectWordLimit--;
-                if(incorrectWordLimit == 0){
-                    sentenceIndex++;
-                    if (sentenceIndex == 999){
-                        //answer not found!
-                    }
-                    
-                }
-                if(correctWordCount >= num_of_quests[i]-3){
-                    //dogru cumleyi bulmus oluyoruz
-                }
-                correctWordCount = 0;
+            
+            incorrectWordLimit--;
+            cout << " incorrectWord " << incorrectWordLimit << endl;
+            if(incorrectWordLimit == 0){
+                sentenceIndex++;
+                incorrectWordLimit = 4;
+                j--;
+                
             }
+            if(correctWordCount >= num_of_quests[i]-3){
+                //dogru cumleyi bulmus oluyoruz
+                //cout << hashedText[sentenceIndex] << endl;
+            }
+            correctWordCount = 0;
+        
     
         }
         
     }
-
-
-    
-    cout << quest_arr_2D[0][0];
     
 }
 

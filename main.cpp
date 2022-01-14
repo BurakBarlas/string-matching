@@ -8,7 +8,7 @@ int main() {
 
     auto start = chrono::steady_clock::now();
 
-    // readFromQuestion();
+     readFromQuestion();
      readFromParagraph();
 
 

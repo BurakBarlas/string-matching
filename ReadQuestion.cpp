@@ -61,13 +61,13 @@ void readFromQuestion(){
     }
     question.close();
     // arrayin icindekileri gormek icin kullanildi
-    for (int i = 0; i < 62; i++){
+    /*for (int i = 0; i < 62; i++){
 
         for (int j = 0; j < 62; j++){
            cout << quest_arr_2D[i][j] + " ";
         }
         cout << num_of_quests[i];
         cout << endl;
-    }
+    }*/
 
 }
