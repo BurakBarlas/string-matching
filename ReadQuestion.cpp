@@ -14,11 +14,12 @@ void readFromQuestion(){
 
     string word;
     string tempSentence = "";
+    string reCreateLastWord = "";
     int questionNumber = 0;
     int questionWord = 0;
     int wordCounter = 0;
     bool isInBannerdWord = false;
-    string bannedWord[16] = {"that","his","is","to","at","an","on","in","from","the","he","of","she","He","a","The"};
+    string bannedWord[15] = {"that","his","is","to","at","an","on","in","the","he","of","she","He","a","The"};
     // ifstream question("questions.txt");
     ifstream question("questionsTest.txt");
 
@@ -34,29 +35,36 @@ void readFromQuestion(){
     if(question.is_open()){
         while(question >> word){
             wordCounter++;
-            // for(int i = 0; i < 16; i++){
-                // if(word != bannedWord[i]){
-                //     isInBannerdWord=false;
-                // }
-                // else{
-                //     isInBannerdWord=true;
-                //     break;
-                // }
-            // }
-            // if(!isInBannerdWord){
+            /*for(int i = 0; i < 15; i++){
+                if(word != bannedWord[i]){
+                    isInBannerdWord=false;
+                }
+                else{
+                    isInBannerdWord=true;
+                    break;
+                }
+            }
+            if(!isInBannerdWord){*/
             
-            quest_arr_2D[questionNumber][questionWord] = word;
-            questionWord++;
-            tempSentence += word + " ";
-            if(word.back() == '?'){
+                
+            if(word.back() != '?'){
+                quest_arr_2D[questionNumber][questionWord] = word;
+                questionWord++;
+                tempSentence += word + " ";
+            }
+            else{
                 // cout << tempSentence << " " << endl;
+                word.pop_back();
+                quest_arr_2D[questionNumber][questionWord] = word;
+                questionWord++;
+                tempSentence += word + " ";
                 tempSentence = "";
                 num_of_quests[questionNumber] = wordCounter;
                 questionNumber++;
                 questionWord = 0;
                 wordCounter = 0;
             }
-            // }
+            //}
         }
     }
     question.close();
