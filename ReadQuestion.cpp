@@ -14,6 +14,7 @@ int questionSize = 0;
 //  Test for getting questions from text file.
 string testSentence = "What time is read on a clock on the wall ";
 // don't forget to look this part.
+
 void readFromQuestion(){
 
     string word;
@@ -24,8 +25,11 @@ void readFromQuestion(){
     int questionWord = 0;
     int wordCounter = 0;
 
-    ifstream question("questions.txt");
 
+    ifstream question("questions.txt");
+    //  ----------------------------------------------------------------------------------------------------------------------
+    //                              Initializes "quest_add_2D" and "num_of_quests" arrays
+    //  ----------------------------------------------------------------------------------------------------------------------
     for (int i = 0; i < 62; i++){
 
         num_of_quests[i] = 0;
@@ -37,7 +41,9 @@ void readFromQuestion(){
         }
 
     }
-
+    //  ----------------------------------------------------------------------------------------------------------------------
+    //              Reads questions from question.txt file and stores these questions to array word by word. 
+    //  ----------------------------------------------------------------------------------------------------------------------
     if(question.is_open()){
 
         while(question >> word){
