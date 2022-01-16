@@ -10,13 +10,16 @@ using namespace std;
 
 string quest_arr_2D[62][62];
 int num_of_quests[62];
-
+int questionSize = 0;
+//  Test for getting questions from text file.
+string testSentence = "What time is read on a clock on the wall ";
+// don't forget to look this part.
 void readFromQuestion(){
 
     string word;
     string tempSentence = "";
     string reCreateLastWord = "";
-    
+
     int questionNumber = 0;
     int questionWord = 0;
     int wordCounter = 0;
@@ -60,6 +63,8 @@ void readFromQuestion(){
                 questionNumber++;
                 questionWord = 0;
                 wordCounter = 0;
+
+                questionSize++;
 
             }
 

@@ -1,1 +1,2 @@
-
+ start).count()
+        << " microseconds" << endl;
